@@ -63,8 +63,13 @@ function closeOverlay() {
 }
 
 function newSrc(step, index) {
-  lightboxImage.dataset.index = `${index + step}`;
-  lightboxImage.src = galleryItems[index + step].original;
+  // lightboxImage.dataset.index = `${index + step}`;
+  // lightboxImage.src = galleryItems[index + step].original;
+  attributesSrcAltDataset(
+    galleryItems[index + step].original,
+    [index + step],
+    `${index + step}`
+  );
 }
 
 function arrowLeft() {
