@@ -8,7 +8,7 @@ const divOverlay = document.querySelector(".lightbox__overlay");
 
 // создание разметки
 
-galleryItems.map((el, index) => {
+galleryItems.map((el, index, alt) => {
   galleryContainer.innerHTML += `
 <li class="gallery__item">
     <a
@@ -28,10 +28,12 @@ galleryItems.map((el, index) => {
 
 galleryContainer.addEventListener("click", (evt) => {
   evt.preventDefault(); // отменяет действие браузера по умолчанию
-  let modalLink = evt.target.dataset.source;
   divLigthbox.classList.add("is-open");
-  lightboxImage.src = modalLink;
-  lightboxImage.dataset.index = evt.target.dataset.index;
+  attributesSrcAltDataset(
+    evt.target.dataset.source,
+    evt.target.alt,
+    evt.target.dataset.index
+  );
 });
 
 btnClose.addEventListener("click", closeOverlay);
@@ -49,9 +51,15 @@ window.addEventListener("keydown", (evt) => {
   }
 });
 
+function attributesSrcAltDataset(src, alt, index) {
+  lightboxImage.setAttribute("src", src);
+  lightboxImage.setAttribute("alt", alt);
+  lightboxImage.setAttribute("index", index);
+}
+
 function closeOverlay() {
   divLigthbox.classList.remove("is-open");
-  lightboxImage.src = "";
+  attributesSrcAltDataset("", "");
 }
 
 function newSrc(step, index) {
