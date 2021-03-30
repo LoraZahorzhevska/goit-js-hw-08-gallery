@@ -54,7 +54,7 @@ window.addEventListener("keydown", (evt) => {
 function attributesSrcAltDataset(src, alt, index) {
   lightboxImage.setAttribute("src", src);
   lightboxImage.setAttribute("alt", alt);
-  lightboxImage.setAttribute("index", index);
+  lightboxImage.setAttribute("data-index", index);
 }
 
 function closeOverlay() {
